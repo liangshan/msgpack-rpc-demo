@@ -4,6 +4,7 @@ Simple demo with PHP as client and Python as server. Additional to official demo
 
 ## Dependence
 + [msgpack-php 0.5.5](https://github.com/msgpack/msgpack-php)
++ mysql server at localhost, if you want to change the endpoint, hack the code in `server/database.py`
 
 ## Optional
 Recommand phpbrew and virtualenv to install the dependences independently, but not system-wide.
