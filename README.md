@@ -17,7 +17,8 @@ Recommand phpbrew and virtualenv to install the dependences independently, but n
 	$ cd /PATH/TO/msgpack-rpc-demo/server
 	$ virtualenv .virtualenv
 	$ .virtualenv/bin/python setup.py develop
-	$ .virtualenv/bin/python example/property.py
+	$ .virtualenv/bin/python example/property.py init # setup database and mock data
+	$ .virtualenv/bin/python example/property.py # start the server
 
 ### Start the client with builtin web server
 	
