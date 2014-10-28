@@ -1,31 +1,22 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Define __version__ without importing msgpackrpc.
-# This allows building sdist without installing any 3rd party packages.
-exec(open('msgpackrpc/_version.py').read())
-
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-setup(name='msgpack-rpc-python',
-      version=__version__,
-      author='Masahiro Nakagawa',
-      author_email='repeatedly@gmail.com',
-      url="https://github.com/msgpack-rpc/msgpack-rpc-python",
-      description="MessagePack RPC",
-      long_description="""\
-MessagePack RPC for Python.
-
-This implementation uses Tornado framework as a backend.
-""",
-      packages=['msgpackrpc', 'msgpackrpc/transport'],
-      install_requires=['msgpack-python', 'tornado >= 3'],
-      license="Apache Software License",
-      classifiers=[
-          'Programming Language :: Python :: 2',
-          'Programming Language :: Python :: 3',
-          'License :: OSI Approved :: Apache Software License'],
-      )
+setup(
+    name = 'msgpack-rpc-python-with-mysql',
+    version = '0.1.dev',
+    author = 'Liang Shan',
+    author_email = '2lisum3@gmail.com',
+    description = "MessagePack RPC demo with MySQL example.",
+    packages = ['msgpackrpc'],
+    install_requires = [
+        'msgpack-python == 0.4.2', 
+        'tornado >= 3',
+        'sqlalchemy == 0.9.8',
+        'oursql == 0.9.3.1'
+    ]
+)
