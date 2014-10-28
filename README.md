@@ -14,13 +14,14 @@ Recommand phpbrew and virtualenv to install the dependences independently, but n
 
 ### Start the server
 
-	$ cd msgpack-rpc-demo/server
+	$ cd /PATH/TO/msgpack-rpc-demo/server
 	$ virtualenv .virtualenv
+	$ .virtualenv/bin/python setup.py develop
 	$ .virtualenv/bin/python example/property.py
 
 ### Start the client with builtin web server
 	
-	$ cd  msgpack-rpc-demo/client
+	$ cd /PATH/TO/msgpack-rpc-demo/client
 	$ php -S localhost:8000 -t example/index.php
 
 #### Benchmark
