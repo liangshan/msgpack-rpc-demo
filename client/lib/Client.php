@@ -28,13 +28,13 @@ class MessagePackRPC_Client
 
     if (!is_null($errors)) {
       if (is_array($errors)) {
-	$errors = '[' . implode(', ', $errors) . ']';
+      	$errors = '[' . implode(', ', $errors) . ']';
       } else if (is_object($errors)) {
-	if (method_exists($errors, '__toString')) {
-	  $errors = $errors->__toString();
-	} else {
-	  $errors = print_r($errors, true);
-	}
+      	if (method_exists($errors, '__toString')) {
+      	  $errors = $errors->__toString();
+      	} else {
+      	  $errors = print_r($errors, true);
+      	}
       }
       throw new MessagePackRPC_Error_RequestError("{$errors}");
     }

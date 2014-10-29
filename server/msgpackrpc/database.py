@@ -1,3 +1,5 @@
+from json import dumps
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -13,4 +15,4 @@ def jsonify(model):
     json = {}
     for col in model._sa_class_manager.mapper.mapped_table.columns:
         json[col.name] = getattr(model, col.name)
-    return dumps([json])
+    return dumps(json)
