@@ -29,6 +29,7 @@ Recommand phpbrew and virtualenv to install the dependences independently, but n
 #### Benchmark
 
 ```
+$ ab -n 2000 -c 200 "http://localhost:8000/"
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
 Licensed to The Apache Software Foundation, http://www.apache.org/
