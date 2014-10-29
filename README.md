@@ -31,38 +31,38 @@ Recommand phpbrew and virtualenv to install the dependences independently, but n
 #### Benchmark
 
 ```
-$ ab -n 2000 -c 200 "http://localhost:8000/"
+$ ab -n 2000 -c 100 "http://localhost:8000/"
 
-Concurrency Level:      200
-Time taken for tests:   5.322 seconds
+Concurrency Level:      100
+Time taken for tests:   5.740 seconds
 Complete requests:      2000
-Failed requests:        207
-   (Connect: 0, Receive: 0, Length: 207, Exceptions: 0)
+Failed requests:        1980
+   (Connect: 0, Receive: 0, Length: 1980, Exceptions: 0)
 Write errors:           0
-Total transferred:      301739 bytes
-HTML transferred:       81739 bytes
-Requests per second:    375.80 [#/sec] (mean)
-Time per request:       532.194 [ms] (mean)
-Time per request:       2.661 [ms] (mean, across all concurrent requests)
-Transfer rate:          55.37 [Kbytes/sec] received
+Total transferred:      359436 bytes
+HTML transferred:       109436 bytes
+Requests per second:    348.45 [#/sec] (mean)
+Time per request:       286.984 [ms] (mean)
+Time per request:       2.870 [ms] (mean, across all concurrent requests)
+Transfer rate:          61.16 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   1.3      0       7
-Processing:     3  334  66.8    328     521
-Waiting:        3  334  66.8    328     521
-Total:         10  335  66.1    329     521
+Connect:        0    0   0.4      0       3
+Processing:   264  280  51.4    268     624
+Waiting:      264  280  51.4    268     624
+Total:        264  280  51.7    268     625
 
 Percentage of the requests served within a certain time (ms)
-  50%    329
-  66%    330
-  75%    332
-  80%    339
-  90%    382
-  95%    495
+  50%    268
+  66%    269
+  75%    270
+  80%    270
+  90%    285
+  95%    352
   98%    520
-  99%    521
- 100%    521 (longest request)
+  99%    575
+ 100%    625 (longest request)
 ```
 
 ### Start the client with nginx+php-fpm
