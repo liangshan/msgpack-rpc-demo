@@ -3,6 +3,8 @@ Msgpack-RPC demo
 Simple demo with PHP as client and Python as server. Additional to official demo, MySQL R/W is also in the box.
 
 ## Dependence
++ PHP 5.6.0
++ python 2.7.8
 + [msgpack-php 0.5.5](https://github.com/msgpack/msgpack-php)
 + mysql server at localhost, if you want to change the endpoint, hack the code in `server/database.py`
 
@@ -30,30 +32,6 @@ Recommand phpbrew and virtualenv to install the dependences independently, but n
 
 ```
 $ ab -n 2000 -c 200 "http://localhost:8000/"
-This is ApacheBench, Version 2.3 <$Revision: 655654 $>
-Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-Licensed to The Apache Software Foundation, http://www.apache.org/
-
-Benchmarking localhost (be patient)
-Completed 200 requests
-Completed 400 requests
-Completed 600 requests
-Completed 800 requests
-Completed 1000 requests
-Completed 1200 requests
-Completed 1400 requests
-Completed 1600 requests
-Completed 1800 requests
-Completed 2000 requests
-Finished 2000 requests
-
-
-Server Software:        
-Server Hostname:        localhost
-Server Port:            8000
-
-Document Path:          /
-Document Length:        41 bytes
 
 Concurrency Level:      200
 Time taken for tests:   5.322 seconds
@@ -86,7 +64,60 @@ Percentage of the requests served within a certain time (ms)
   99%    521
  100%    521 (longest request)
 ```
-### Start the client with nginx(Non-block Client)
 
-TODO
+### Start the client with nginx+php-fpm
+#### nginx configure
+
+```
+server {
+    listen       8000;
+    root         /PATH/TO/msgpack-rpc-demo/client/example/;
+    index        index.php;
+
+    location ~ \.php$ {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+        fastcgi_index  index.php;
+    }
+}
+```
+
+#### Benchmark
+
+```
+ab -n 2000 -c 100 "http://localhost:8000/"
+
+Concurrency Level:      100
+Time taken for tests:   2.976 seconds
+Complete requests:      2000
+Failed requests:        215
+   (Connect: 0, Receive: 0, Length: 215, Exceptions: 0)
+Write errors:           0
+Total transferred:      431445 bytes
+HTML transferred:       109445 bytes
+Requests per second:    671.99 [#/sec] (mean)
+Time per request:       148.811 [ms] (mean)
+Time per request:       1.488 [ms] (mean, across all concurrent requests)
+Transfer rate:          141.57 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.6      0       4
+Processing:     6  145  18.7    146     178
+Waiting:        6  145  18.7    146     178
+Total:         11  145  18.1    146     178
+
+Percentage of the requests served within a certain time (ms)
+  50%    146
+  66%    149
+  75%    150
+  80%    151
+  90%    153
+  95%    158
+  98%    175
+  99%    176
+ 100%    178 (longest request)
+```
+
 

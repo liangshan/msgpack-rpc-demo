@@ -7,11 +7,10 @@ try {
     $client = new MessagePackRPC_Client('localhost', '18800');
     try {
         $property = $client->call('get_property', array(rand(0, 100)));
-        print $property;
+        var_dump($property) ;
     } catch (MessagePackRPC_Error_RequestError $e) {
         echo "Error: " . $e->getMessage() . "\n";
     }
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage() . "\n";
 }
-exit;
