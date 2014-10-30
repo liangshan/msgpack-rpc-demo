@@ -30,7 +30,7 @@ class MessagePackRPC_Back
 
     if ($this->use_shared_connection) {
       if (!self::$shared_unpacker)
-	self::$shared_unpacker = new MessagePackUnpacker();
+	      self::$shared_unpacker = new MessagePackUnpacker();
       $this->unpacker = self::$shared_unpacker;
     } else {
       $this->unpacker = new MessagePackUnpacker();
@@ -41,9 +41,9 @@ class MessagePackRPC_Back
   {
     if (!self::$allow_persistent) {
       if (self::$shared_client_socket)
-	fclose(self::$shared_client_socket);
+	      fclose(self::$shared_client_socket);
       if ($this->client_socket)
-	fclose($this->client_socket);
+	      fclose($this->client_socket);
     }
   }
 
@@ -73,7 +73,8 @@ class MessagePackRPC_Back
     return $msg;
   }
 
-  public function readMsg($io) {
+  public function readMsg($io) 
+  {
     stream_set_blocking($io, 0);
     while (!feof($io)) {
       $r = array($io);
@@ -95,9 +96,9 @@ class MessagePackRPC_Back
     if ($sock && !feof($sock))
       return $sock;
     if (!$sock) {
-        $sock = $this->sockopen($host, $port);
+      $sock = $this->sockopen($host, $port);
     } elseif (feof($sock)) {
-        $sock = $this->sockopen($host, $port);
+      $sock = $this->sockopen($host, $port);
     }
     if ($this->use_shared_connection) {
       self::$shared_client_socket = $sock;
